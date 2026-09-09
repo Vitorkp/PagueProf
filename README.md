@@ -121,7 +121,7 @@ O sistema permitirá visualizar a situação financeira dos alunos de maneira si
 | ----------- | ------- | --------: | ----------- |
 | João Silva  | Violão  | R$ 400,00 | 🟢 Pago     |
 | Maria Souza | Desenho | R$ 250,00 | 🟡 Pendente |
-| Ana Costa   | Piano   | R$ 350,00 | 🔴 Atrasado |
+| Vitor   | Piano   | R$ 250,00 | 🔴 Atrasado |
 
 Os diferentes status poderão ser representados visualmente para facilitar a identificação.
 
@@ -256,7 +256,7 @@ As tecnologias ainda estão em processo de definição.
 
 | Área                     | Tecnologia   |
 | ------------------------ | ------------ |
-| 🎨 Frontend              | A definir    |
+| 🎨 Frontend              | Html, Css e javascript    |
 | ⚙️ Backend               | A definir    |
 | 🗄️ Banco de dados       | A definir    |
 | 🔀 Versionamento         | Git / GitHub |
@@ -321,8 +321,8 @@ Projeto desenvolvido por alunos do curso de **Análise e Desenvolvimento de Sist
 
 | Integrante      | Função    |
 | --------------- | --------- |
-| 👨‍💻 Vitor Kannã, | Front-End |
-| 👨‍💻 A definir | Back-End |
+| 👨‍💻 Vitor Kannã, | FrontEnd |
+| 👨‍💻 A definir | BackEnd |
 | 👨‍💻 A definir | A definir |
 
 > Os integrantes e suas respectivas funções poderão ser adicionados ou atualizados posteriormente.
