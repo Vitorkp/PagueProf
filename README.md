@@ -321,8 +321,8 @@ Projeto desenvolvido por alunos do curso de **Análise e Desenvolvimento de Sist
 
 | Integrante      | Função    |
 | --------------- | --------- |
-| 👨‍💻 A definir | A definir |
-| 👨‍💻 A definir | A definir |
+| 👨‍💻 Vitor Kannã, | Front-End |
+| 👨‍💻 A definir | Back-End |
 | 👨‍💻 A definir | A definir |
 
 > Os integrantes e suas respectivas funções poderão ser adicionados ou atualizados posteriormente.
