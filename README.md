@@ -21,8 +21,8 @@ A solução é voltada para profissionais de diferentes áreas, como:
 * 📖 Professores particulares
 * 🌎 Professores de idiomas
 * 💻 Professores de programação
-* 🏋️ Instrutores e profissionais que trabalham com aulas individuais
-* ➕ Outros profissionais autônomos
+* 🏋️ Instrutores e professores que trabalham com aulas individuais
+
 
 O projeto surgiu a partir de uma dificuldade comum enfrentada por esses profissionais: **o controle manual de alunos, aulas e pagamentos**.
 
