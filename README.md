@@ -67,13 +67,13 @@ Além disso, realizar cobranças individualmente por mensagens pode ser uma tare
 
 ### ❓ Como o PagueProf ajuda?
 
-A proposta é substituir controles espalhados em diferentes ferramentas por **uma plataforma centralizada**, permitindo que o professor visualize rapidamente a situação de seus alunos e pagamentos.
+A proposta é substituir controles espalhados em diferentes ferramentas por **uma plataforma/app centralizado**, permitindo que o professor visualize rapidamente a situação de seus alunos e pagamentos.
 
 ---
 
 # 🚀 Funcionalidades propostas
 
-## 👨‍🏫 Gerenciamento de alunos
+##  Gerenciamento de alunos
 
 O professor poderá cadastrar e consultar seus alunos, armazenando as informações necessárias para o acompanhamento das aulas e pagamentos.
 
@@ -140,7 +140,7 @@ O dashboard terá como objetivo apresentar um **resumo das principais informaç�
 Entre os indicadores previstos:
 
 * 👥 Total de alunos;
-* 💵 Pagamentos realizados;
+* 🟢 Pagamentos realizados;
 * 🟡 Pagamentos pendentes;
 * 🔴 Pagamentos atrasados;
 * 💰 Valores a receber.
