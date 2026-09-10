@@ -188,11 +188,11 @@ Dependendo da implementação final, o professor poderá:
 
 A proposta inicial da interface busca ser:
 
-* ✨ Simples;
-* 🧹 Limpa;
-* 📱 Intuitiva;
-* ⚡ Rápida;
-* 📊 Focada nas informações mais importantes.
+*  Simples;
+*  Limpa;
+*  Intuitiva;
+*  Rápida;
+*  Focada nas informações mais importantes.
 
 A tela inicial deverá apresentar um resumo dos alunos e pagamentos, enquanto a área de alunos permitirá acessar informações individuais.
 
@@ -246,13 +246,13 @@ Como a definição do sistema ainda está em andamento, algumas entidades previs
                    🔔 Notificação
 ```
 
-A estrutura definitiva do banco de dados será definida durante as etapas do projeto.
+A estrutura definitiva do banco de dados será definida durante as etapas do projeto junto com a equipe.
 
 ---
 
 # 🛠️ Tecnologias
 
-As tecnologias ainda estão em processo de definição.
+As tecnologias ainda estão em processo de definição, mas as do frontend ja são fixas.
 
 | Área                     | Tecnologia   |
 | ------------------------ | ------------ |
@@ -322,8 +322,8 @@ Projeto desenvolvido por alunos do curso de **Análise e Desenvolvimento de Sist
 | Integrante      | Função    |
 | --------------- | --------- |
 | 👨‍💻 Vitor Kannã, | FrontEnd |
-| 👨‍💻 A definir | BackEnd |
-| 👨‍💻 A definir | A definir |
+| 👨‍💻 A definir | BackEnd     |
+| 👨‍💻 A definir | A definir   |
 
 > Os integrantes e suas respectivas funções poderão ser adicionados ou atualizados posteriormente.
 
@@ -331,24 +331,22 @@ Projeto desenvolvido por alunos do curso de **Análise e Desenvolvimento de Sist
 
 # 📄 Observações
 
-O **PagueProf** é atualmente uma proposta em desenvolvimento.
+O **PagueProf** é atualmente uma proposta em desenvolvimento, estamos pensando nas ideias, design thinking, benchmarking e como funcionará os sprints semanais.
 
 Portanto, as funcionalidades descritas neste README representam a **visão atual do projeto** e não necessariamente a versão final do sistema.
 
-Durante o desenvolvimento, novas funcionalidades poderão ser adicionadas, enquanto outras poderão ser modificadas ou removidas de acordo com as necessidades identificadas pela equipe.
-
+Durante o desenvolvimento, novas funcionalidades serão adicionadas, enquanto outras poderão ser modificadas ou removidas de acordo com as necessidades identificadas por nossa equipe.
 ---
 
 ## 📌 Resumo
 
 > **PagueProf** é uma proposta de plataforma criada para simplificar a rotina de professores autônomos, centralizando **alunos, aulas, pacotes e pagamentos** em um único lugar.
 
-**Menos planilhas. Menos anotações. Menos preocupação.
-Mais organização para o professor. 💙**
+**Menos planilhas. Menos anotações. Menos preocupação e mais organização para o professor autonomo**
 
 ---
 
 <p align="center">
-  📚 <strong>PagueProf</strong><br>
+   <strong>PagueProf</strong><br>
   <i>Organizando a rotina de quem ensina.</i>
 </p>
