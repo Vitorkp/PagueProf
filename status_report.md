@@ -115,7 +115,7 @@ A estrutura do banco de dados ainda precisa ser detalhada e validada.
 
 ### Meta da próxima Sprint
 
-> Iniciar a implementação do PagueProf, criando a estrutura técnica do projeto e implementando a primeira tela de autenticação do usuario com Front-End e estruturar o banco de dados MySQL.
+> Iniciar a implementação do PagueProf, criando a estrutura técnica do projeto e implementando a primeira tela de autenticação do usuario com Front-End e estruturação o banco de dados MySQL.
 
 **Meta:**
 
