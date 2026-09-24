@@ -109,22 +109,25 @@
 
 ### Meta da próxima Sprint
 
-> Escreva um resultado claro e verificável que a equipe pretende alcançar.
+> Iniciar a implementação do PagueProf, criando a estrutura técnica do projeto e implementando as primeiras telas com Front-End
 
 **Meta:**
 
 ### Itens inicialmente selecionados
 
-| User Story ou item | Responsável(is), se definido(s) | Resultado esperado |
-|---|---|---|
-|  |  |  |
-|  |  |  |
+| User Story ou item | Responsável(is) | Resultado esperado | |Configuração inicial do projeto|
+
+| Estrutura do Front-end | Vitor, Nickolas e... | Criar a estrutura inicial das páginas e componentes do PagueProf |
+
+| Estrutura do Back-end | Filipe | Criar a estrutura inicial da aplicação PHP |
 |  |  |  |
 
-> Esta é uma seleção inicial. O planejamento poderá ser ajustado pela equipe no início da próxima sprint.
+> Esta é uma seleção inicial e poderá ser ajustada pela equipe conforme o andamento da Sprint 2.
 
 ### Riscos ou impedimentos previstos
 
-> Informe os principais fatores que podem dificultar o cumprimento da próxima meta. Caso nenhum risco tenha sido identificado, escreva “Nenhum risco identificado”.
+> existe o risco de algumas funcionalidades do protótipo precisarem ser
+alteradas durante a implementação devido a limitações técnicas ou mudanças
+nos requisitos e para reduzir esse risco começaremos pelas funcionalidades mais simples enquanto conversamos sobre o projeto.
 
 **Riscos:**
