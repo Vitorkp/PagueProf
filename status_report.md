@@ -49,11 +49,9 @@ Definimos os cargos de cada membro e criamos um protótipo visual de como seria 
 - Bloqueado
 
 | User Story ou item | Responsável(is) | Situação final | Observação |
-
+|---|---|---|---|
 | US01 | definição de tecnologias | all | concluido  | linguagens de front e back definidas para cada equipe |
-
 | US02 | definição de PO e SCRUM | filipe e talita | concluido |  nada a declarar
-
 | US03 | criação do protótipo visual | frontend/equipe | concluido | protótipo da tela principal  |
 
 > Inclua somente as User Stories ou os itens principais planejados para a sprint.  
@@ -122,13 +120,11 @@ A estrutura do banco de dados ainda precisa ser detalhada e validada.
 
 ### Itens inicialmente selecionados
 
- | User Story ou item | Responsável(is) | Situação final | Observação |
-
-| US04 | Estrutura do Front-end com HTML e CSS | Vitor, Nickolas e Fernando | Em andamento... | conversão do protótipo visual para a aplicação funcional |
-
-| US05 | Modelagem do banco de dados | Filipe e Allan | Em andamento... | criação da tabela de usuários |
-
-| US06 | conexão php com banco de dados e validação | Filipe, Henrique e Talita | Tela de login funcional e validação da tela |
+| User Story ou item | Responsável(is) | Situação final | Observação |
+|---|---|---|---|
+| US04 Estrutura do Front-end com HTML e CSS | Vitor, Nickolas e Fernando | Em andamento... | conversão do protótipo visual para a aplicação funcional |
+| US05 Modelagem do banco de dados | Filipe e Allan | Em andamento... | criação da tabela de usuários |
+| US06 conexão php com banco de dados e validação | Filipe, Henrique e Talita | em andamento... | Tela de login funcional e validação da tela |
 
 
 
