@@ -27,9 +27,10 @@
 
 ### Resultado alcançado
 
-> Definimos os cargos de cada membro e criamos um protótipo visual de como seria a interface do Professor. 
 
 **Resultado:**
+
+Definimos os cargos de cada membro e criamos um protótipo visual de como seria a interface do Professor. 
 
 ### Principal dificuldade ou impedimento
 
