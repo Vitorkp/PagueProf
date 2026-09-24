@@ -6,7 +6,7 @@
 - **Número da Sprint:1**
 - **Período:17/09 a 24/09 **
 - **Integrantes:**
-- **Alan, Fernando, Filipe, Nickolas, Talita, Henrique, Vitor e allan**
+- **Alan, Fernando, Filipe, Nickolas, Talita, Henrique e Vitor **
 - **Scrum Master da Sprint: Talita**
 
 ### Meta da Sprint
