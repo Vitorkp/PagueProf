@@ -50,7 +50,9 @@
 | User Story ou item | Responsável(is) | Situação final | Observação |
 
 | US01 | definição de tecnologias | all | concluido  | linguagens de front e back definidas para cada equipe |
-| US02 | definição de PO e SCRUM | filipe e talita | concluido |  |
+
+| US02 | definição de PO e SCRUM | filipe e talita | concluido |  nada a declarar
+
 | US03 | criação do protótipo visual | frontend/equipe | concluido | protótipo da tela principal  |
 
 > Inclua somente as User Stories ou os itens principais planejados para a sprint.  
