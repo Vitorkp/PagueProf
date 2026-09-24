@@ -6,14 +6,14 @@
 - **Número da Sprint:1**
 - **Período:17/09 a 24/09 **
 - **Integrantes:**
-- **Alan, Fernando, Filipe, Nickolas, Talita, Henrique, Vitor**
-- **Scrum Master da Sprint:**
+- **Alan, Fernando, Filipe, Nickolas, Talita, Henrique, Vitor e allan**
+- **Scrum Master da Sprint: Talita**
 
 ### Meta da Sprint
 
 > Informe a meta definida no planejamento da sprint que está sendo finalizada.
 
-**Meta:Definição de integrantes do grupo, decidir o que sera o projeto, iremos definir  qual modelo de organização iremos utiliza, quais linguagens e como iremos fazer a divisão para o grupo.**
+**Meta:Definição da tecnologia, definição de cargos e protótipo do PagueProf**
 
 ---
 
@@ -21,21 +21,20 @@
 
 ### Situação da meta
 
-- [ ] Alcançada
+- [x] Alcançada
 - [ ] Parcialmente alcançada
 - [ ] Não alcançada
 
 ### Resultado alcançado
 
-> Descreva brevemente quais funcionalidades ou resultados foram concluídos e estão funcionando ao final da sprint.
+> Definimos os cargos de cada membro e criamos um protótipo visual de como seria a interface do Professor. 
 
 **Resultado:**
 
 ### Principal dificuldade ou impedimento
 
-> Informe somente a dificuldade ou o impedimento que mais afetou a sprint. Caso não tenha ocorrido, escreva “Nenhum impedimento relevante”.
+> Dificuldade na escolha das tecnologias e organização da Sprint 1
 
-**Dificuldade ou impedimento:**
 
 ---
 
@@ -49,10 +48,10 @@
 - Bloqueado
 
 | User Story ou item | Responsável(is) | Situação final | Observação |
-|---|---|---|---|
-| US01 |  |  |  |
-| US02 |  |  |  |
-| US03 |  |  |  |
+
+| US01 | definição de tecnologias | all | concluido  | linguagens de front e back definidas para cada equipe |
+| US02 | definição de PO e SCRUM | filipe e talita | concluido |  |
+| US03 | criação do protótipo visual | frontend/equipe | concluido | protótipo da tela principal  |
 
 > Inclua somente as User Stories ou os itens principais planejados para a sprint.  
 > Não copie todas as tarefas menores do quadro Kanban.
@@ -70,14 +69,19 @@
 
 ### Checklist de qualidade
 
-- [ ] Os itens marcados como concluídos atendem aos critérios de aceite.
+- [x] Os itens marcados como concluídos atendem aos critérios de aceite.
 - [ ] As funcionalidades entregues foram testadas pela equipe.
-- [ ] O código atualizado está no repositório oficial.
+- [x] O código atualizado está no repositório oficial.
 - [ ] Os problemas conhecidos estão registrados no Kanban ou no repositório.
 
 ### Problemas conhecidos
 
-> Informe os problemas que permanecem no incremento. Caso não tenham sido identificados, escreva “Nenhum problema conhecido”.
+durante o desenvolvimento da sprint 1 tivemos alguns problemas conhecidos:
+
+O fluxo completo do sistema ainda não está totalmente definido e poderá sofrer alterações durante a implementação.
+
+A estrutura do banco de dados ainda precisa ser detalhada e validada.
+
 
 **Registro:**
 
@@ -87,19 +91,19 @@
 
 ### Manter
 
-> O que funcionou bem e deve continuar?
+> alinhamento do time na tomada de decisão sobre o design das telas e as tecnologias
 
 **Registro:**
 
 ### Melhorar
 
-> O que precisa mudar na próxima sprint?
+> detalhar melhor os critérios em relação ao fluxo do sistema.
 
 **Registro:**
 
 ### Agir
 
-> Qual ação concreta a equipe adotará na próxima sprint?
+> configurar os ambientes do php e MySQL e configuração da tela inicial.
 
 **Ação:**
 
@@ -109,18 +113,21 @@
 
 ### Meta da próxima Sprint
 
-> Iniciar a implementação do PagueProf, criando a estrutura técnica do projeto e implementando as primeiras telas com Front-End
+> Iniciar a implementação do PagueProf, criando a estrutura técnica do projeto e implementando a primeira tela de autenticação do usuario com Front-End e estruturar o banco de dados MySQL.
 
 **Meta:**
 
 ### Itens inicialmente selecionados
 
-| User Story ou item | Responsável(is) | Resultado esperado | |Configuração inicial do projeto|
+ | User Story ou item | Responsável(is) | Situação final | Observação |
 
-| Estrutura do Front-end | Vitor, Nickolas e... | Criar a estrutura inicial das páginas e componentes do PagueProf |
+| US04 | Estrutura do Front-end com HTML e CSS | Vitor, Nickolas e Fernando | Em andamento... | conversão do protótipo visual para a aplicação funcional |
 
-| Estrutura do Back-end | Filipe | Criar a estrutura inicial da aplicação PHP |
-|  |  |  |
+| US05 | Modelagem do banco de dados | Filipe e Allan | Em andamento... | criação da tabela de usuários |
+
+| US06 | conexão php com banco de dados e validação | Filipe, Henrique e Talita | Tela de login funcional e validação da tela |
+
+
 
 > Esta é uma seleção inicial e poderá ser ajustada pela equipe conforme o andamento da Sprint 2.
 
