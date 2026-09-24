@@ -137,6 +137,6 @@ A estrutura do banco de dados ainda precisa ser detalhada e validada.
 
 **Riscos:**
 
-## existe o risco de algumas funcionalidades do protótipo precisarem ser
+ existe o risco de algumas funcionalidades do protótipo precisarem ser
 alteradas durante a implementação devido a limitações técnicas ou mudanças
 nos requisitos e para reduzir esse risco começaremos pelas funcionalidades mais simples enquanto conversamos sobre o projeto.
