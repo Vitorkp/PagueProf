@@ -266,51 +266,28 @@ As tecnologias ainda estão em processo de definição, mas as do frontend ja s�
 
 ---
 
-# 📋 Status do projeto
+📋 Status do projeto
+🟡 Em desenvolvimento — Implementação inicial
 
-### 🟡 Em desenvolvimento — Fase de planejamento
+O PagueProf concluiu sua primeira Sprint, na qual foram definidas as tecnologias, os papéis da equipe e desenvolvido o protótipo visual inicial.
 
-O PagueProf encontra-se em sua fase inicial de desenvolvimento.
+A Sprint 2 dará início à implementação do sistema, com foco na estrutura do Front-end, modelagem do banco de dados, configuração do PHP e criação da primeira tela de autenticação do usuário.
 
-A proposta, as funcionalidades e a arquitetura ainda serão modificadas e atualizadas.
-
-### ✅ Já definido
-
-* [x] Ideia inicial do sistema
-* [x] Identificação do problema
-* [x] Definição inicial do público-alvo
-* [x] Proposta de solução
-* [x] Protótipo conceitual das telas
-
-### 🔄 Em desenvolvimento
-
-* [ ] Levantamento completo de requisitos
-* [ ] Definição da arquitetura
-* [ ] Modelagem do banco de dados
-* [ ] Desenvolvimento do frontend
-* [ ] Desenvolvimento do backend
-* [ ] Integração entre frontend e backend
-* [ ] Testes
-* [ ] Documentação final
-
----
-
-# 🎓 Projeto acadêmico
-
-O **PagueProf** está sendo desenvolvido como parte de um **Projeto de Desenvolvimento do curso de Análise e Desenvolvimento de Sistemas (ADS)**.
-
-O projeto tem como objetivo aplicar, na prática, conceitos relacionados a:
-
-* Engenharia de Software;
-* Análise de requisitos;
-* Modelagem de sistemas;
-* Banco de dados;
-* Desenvolvimento de interfaces;
-* Desenvolvimento de aplicações;
-* Testes de software;
-* Documentação;
-* Controle de versão.
-
+✅ Concluído na Sprint 1
+ Definição das tecnologias;
+ Definição dos papéis da equipe;
+ Criação do protótipo visual inicial;
+ Definição inicial da proposta do sistema.
+ 
+🔄 Em desenvolvimento
+ Estrutura do Front-end;
+ Tela de autenticação;
+ Modelagem do banco de dados;
+ Configuração do PHP;
+ Conexão PHP com MySQL;
+ Validação da autenticação;
+ Testes;
+ Documentação final.
 ---
 
 # 👥 Equipe
@@ -327,15 +304,6 @@ Projeto desenvolvido por alunos do curso de **Análise e Desenvolvimento de Sist
 
 > Os integrantes e suas respectivas funções poderão ser adicionados ou atualizados posteriormente.
 
----
-
-# 📄 Observações
-
-O **PagueProf** é atualmente uma proposta em desenvolvimento, estamos pensando nas ideias, design thinking, benchmarking e como funcionará os sprints semanais.
-
-Portanto, as funcionalidades descritas neste README representam a **visão atual do projeto** e não necessariamente a versão final do sistema.
-
-Durante o desenvolvimento, novas funcionalidades serão adicionadas, enquanto outras poderão ser modificadas ou removidas de acordo com as necessidades identificadas por nossa equipe.
 ---
 
 ## 📌 Resumo
