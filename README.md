@@ -19,9 +19,7 @@ A solução é voltada para profissionais de diferentes áreas, como:
 * 🎵 Professores de música
 * 🎨 Professores de desenho e pintura
 * 📖 Professores particulares
-* 🌎 Professores de idiomas
-* 💻 Professores de programação
-* 🏋️ Instrutores e professores que trabalham com aulas individuais
+*  professores que trabalham com aulas individuais
 
 
 O projeto surgiu a partir de uma dificuldade comum enfrentada por esses profissionais: **o controle manual de alunos, aulas e pagamentos**.
@@ -285,9 +283,7 @@ A Sprint 2 dará início à implementação do sistema, com foco na estrutura do
  Modelagem do banco de dados;
  Configuração do PHP;
  Conexão PHP com MySQL;
- Validação da autenticação;
  Testes;
- Documentação final.
 ---
 
 # 👥 Equipe
