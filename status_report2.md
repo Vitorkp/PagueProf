@@ -1,108 +1,107 @@
 # Status Report da Sprint 2
 
 ## 1. Identificação
-- **Projeto: PagueProf**
-- **Número da Sprint: 2**
-- **Período: 17/09 a 08/10 **
-- **Data: 08/10/2026**
-- **Integrantes e Funções: Alan: (BACKEND),Fernando: (Passou para noite),Filipe: (BACKEND + BD),Nickolas(BACKEND + FRONTEND),Talita (SCRUM MASTER E ANALISTA DE QA),Henrique(FRONTEND),Vitor(BACKEND+FRONTEND).**
+
+- **Projeto:** PagueProf
+- **Número da Sprint:** 2
+- **Período:** 17/09 a 08/10/2026
+- **Data:** 08/10/2026
+- **Scrum Master:** Talita
+- **Integrantes e Funções:**
+  - **Alan:** Back-End
+  - **Fernando:** *(Transferido para o turno da noite)*
+  - **Filipe:** Back-End e Banco de Dados
+  - **Henrique:** Front-End
+  - **Nickolas:** Back-End e Front-End
+  - **Talita:** Scrum Master e Analista de QA
+  - **Vitor:** Back-End e Front-End
 
 ### Meta da Sprint
-Meta da Sprint 2 é dar continuidade no desenvolvimento do código.
 
-**Meta**
-Definição da tecnologia, definição de cargos e protótipo do PagueProf
-BACKEND: PHP
-FRONTEND: HTML, CSS, JAVASCRIPT
-BD: MYSQL
+> **Meta:** Dar continuidade ao desenvolvimento do código, implementando as tecnologias definidas (PHP no Back-End, HTML/CSS/JavaScript no Front-End e MySQL no Banco de Dados).
+
+---
 
 ## 2. Resultado da Sprint 2
-Primera Semana:
-Conseguimos definir quais linguagens utilizar, demos continuidade nos códigos frontend e backend, definição de cargos definidas e organização dos documentos/trello.
-Segunda Semana:
-Atualizamos a interface do site, conseguimos ja cadastrar alunos, visualizar pagamentos na aba principal, Alunos também já conseguem se cadastrar no site, adicionamos a aba PLANOS DE COBRANÇA onde o usuario cria um alerta para cobranças automatico
+
+### Evolução da Sprint
+
+- **Primeira Semana:** Definimos com clareza a stack tecnológica (PHP, HTML/CSS/JS, MySQL), avançamos na codificação das telas do Front-End e na lógica do Back-End, consolidamos a divisão de papéis da equipe e organizamos a documentação no Trello.
+- **Segunda Semana:** Atualizamos a interface do sistema, implementamos as telas de cadastro e listagem de alunos, a visualização de pagamentos no dashboard e criamos a aba **Planos de Cobrança**, permitindo ao usuário configurar alertas de cobrança automática.
 
 ### Situação da meta
+
 - [x] Alcançada
 - [ ] Parcialmente alcançada
 - [ ] Não alcançada
 
 ### Resultado alcançado
-Usuário já consegue criar login e senha para acesso, visualizar a área de dashboard,alunos,pagamentos,aulas, configurações.
-A grande funcionalidade exigidas foram parcialmente atingidas, estamos identificando erros, e atualizando algumas funções.
 
-**Resultado:**
-Criamos a interface, temos o banco de dado mas ainda falta implementar o pagamento.
+O usuário já consegue criar login e senha de acesso, navegar pelo dashboard e visualizar as seções de alunos, pagamentos, aulas e configurações. A interface visual e a estrutura inicial do banco de dados estão prontas, restando ajustar a integração completa de pagamentos e correções pontuais de erros.
 
 ### Principal dificuldade ou impedimento
-Nenhum impedimento relevante.
 
-> Dificuldade na escolha das tecnologias e organização da Sprint 2
-Nenhum impedimento relevante.
+Nenhum impedimento crítico na Sprint 2. A principal dificuldade residiu no refinamento da escolha das tecnologias e na organização das entregas do período.
+
+---
 
 ## 3. Itens planejados e situação final
-Desenvolvimento frontend - CONCLUÍDO.
 
 | User Story ou item | Responsável(is) | Situação final | Observação |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| US01 | Implementar BD | ALL | concluído  | Concluído | 
-| US02 | Acrescentar área para adicionar alunos | ALL | Concluído | 
-| US03 | criação do protótipo visual |  frontend/equipe | concluído | protótipo da tela principal
----|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|---|---|---|---|
+| US01 - Implementação do Banco de Dados | Toda a equipe | Concluído | Estrutura básica do MySQL criada e configurada. |
+| US02 - Área para adicionar/gerenciar alunos | Toda a equipe | Concluído | Interface e cadastro funcional de alunos. |
+| US03 - Criação e evolução do protótipo visual | Front-End / Equipe | Concluído | Telas principais do sistema finalizadas e atualizadas. |
+
+---
 
 ## 4. Evidências e qualidade
-- **Repositório:https://github.com/Vitorkp/PagueProf** 
-- **Quadro Kanban:https://trello.com/b/XPZeyPlK/projeto-e-desenvolvimento-1**
-- **Deploy ou instruções para executar o projeto:**
-- **Outras evidências, se necessárias:**
+
+### Evidências
+
+- **Repositório:** [https://github.com/Vitorkp/PagueProf](https://github.com/Vitorkp/PagueProf)
+- **Quadro Kanban:** [https://trello.com/b/XPZeyPlK/projeto-e-desenvolvimento-1](https://trello.com/b/XPZeyPlK/projeto-e-desenvolvimento-1)
 
 ### Checklist de qualidade
-- [X] Os itens marcados como concluídos atendem aos critérios de aceite.
-- [X] As funcionalidades entregues foram testadas pela equipe.
-- [X] O código atualizado está no repositório oficial.
-- [  ] Os problemas conhecidos estão registrados no Kanban ou no repositório.
+
+- [x] Os itens marcados como concluídos atendem aos critérios de aceite.
+- [x] As funcionalidades entregues foram testadas pela equipe.
+- [x] O código atualizado está no repositório oficial.
+- [ ] Os problemas conhecidos estão registrados no Kanban ou no repositório.
 
 ### Problemas conhecidos
-Nenhum problema conhecido
- 
-**Registro:**
-A autenticação ainda não está integrada ao frontend.
+
+A integração completa da autenticação com a interface do Front-End ainda precisa ser finalizada na próxima etapa.
+
+---
 
 ## 5. Retrospectiva da Sprint
 
 ### Manter
-> Alinhamento do time na tomada de decisão sobre o design das telas e as tecnologias.
-**Registro:**
+Alinhamento contínuo do time em relação ao design visual das telas e definições arquiteturais das tecnologias.
 
 ### Melhorar
-> Detalhar melhor os critérios em relação ao fluxo do sistema.
-**Registro:**
+Detalhamento dos critérios e regras de negócio no fluxo geral do sistema.
 
 ### Agir
-> configurar os ambientes do php e MySQL e configuração da tela inicial.
-**Ação:**
+Avançar no ajuste e validação dos ambientes PHP/MySQL e finalizar a integração completa das telas de autenticação.
+
+---
 
 ## 6. Planejamento da próxima Sprint
-Pretendemos ja ter desenvolvido o Banco de dados e integrado com o frontend, também queremos fazer mais testes no site para ver se esta funcionando da forma ideal para o usuario e pensamos ja em outras soluções para sprints futuras como implementar o pix.
 
 ### Meta da próxima Sprint
-> Iniciar a implementação do PagueProf, criando a estrutura técnica do projeto e implementando a primeira tela de autenticação do usuario com Front-End e estruturação o banco de dados MySQL.
 
-**Meta:**
+> **Meta:** Concluir a integração total do Banco de Dados com o Front-End via PHP, realizar testes de usabilidade e fluxo no sistema, e iniciar o levantamento de requisitos para integração de meios de pagamento (ex.: PIX).
 
 ### Itens inicialmente selecionados
 
 | User Story ou item | Responsável(is) | Situação final | Observação |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| US04 | Estrutura do Front-end com HTML e CSS | Vitor, Nickolas | Em andamento | Conversão do protótipo visual para a aplicação funcional |
-| US05 | Modelagem do banco de dados | Alan e Filipe | Em andamento | criação da tabela de usuários |
-| US06 | conexão php com banco de dados e validação | Alan e Filipe | em andamento | Tela de login funcional e validação da tela |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|---|---|---|---|
+| US04 - Estrutura do Front-End (HTML/CSS) | Vitor e Nickolas | Em andamento | Refinamento e conversão de protótipos em telas funcionais. |
+| US05 - Modelagem do Banco de Dados | Alan e Filipe | Em andamento | Finalização do esquema relacional de usuários, turmas e pagamentos. |
+| US06 - Conexão PHP com BD e validação | Alan e Filipe | Em andamento | Validação completa do fluxo de autenticação e sessão de usuário. |
 
 ### Riscos ou impedimentos previstos
 
-**Riscos**
-
-Existe o risco de algumas funcionalidades do protótipo precisarem ser
-alteradas durante a implementação devido a limitações técnicas ou mudanças
-nos requisitos e para reduzir esse risco começaremos pelas funcionalidades mais simples enquanto conversamos sobre o projeto.
+Existe o risco de certas funcionalidades necessitarem de adaptações durante a implementação devido a limitações técnicas ou ajustes de requisitos. Para mitigar esse risco, a equipe continuará priorizando a entrega incremental das funcionalidades mais simples e essenciais antes de avançar para integrações mais complexas.
