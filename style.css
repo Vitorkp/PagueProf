@@ -1,5 +1,6 @@
 /* ============================================================
    CSS - PAGUEPROF WEB DASHBOARD + AUTENTICAÇÃO + COBRANÇAS
+   + EDIÇÃO INLINE + RESPONSIVO
    ============================================================ */
 
 :root {
@@ -63,6 +64,7 @@ body {
     -webkit-font-smoothing: antialiased;
     font-size: 14px;
     line-height: 1.5;
+    overflow-x: hidden;
 }
 
 .hidden { display: none !important; }
@@ -371,6 +373,7 @@ body {
     left: 0;
     height: 100vh;
     z-index: 50;
+    transition: transform 0.3s ease;
 }
 
 .sidebar-logo {
@@ -411,6 +414,7 @@ body {
     flex-direction: column;
     gap: 0.25rem;
     flex: 1;
+    overflow-y: auto;
 }
 
 .nav-link {
@@ -550,7 +554,27 @@ body {
     position: sticky;
     top: 0;
     z-index: 40;
+    gap: 1rem;
 }
+
+/* Botão hambúrguer (escondido no desktop) */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-dark);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.menu-toggle:hover { background-color: #F3F4F6; }
+.menu-toggle .material-symbols-rounded { font-size: 24px; }
 
 .search-bar {
     display: flex;
@@ -604,6 +628,7 @@ body {
     cursor: pointer;
     color: var(--text-mid);
     transition: all 0.2s;
+    flex-shrink: 0;
 }
 
 .icon-btn:hover {
@@ -640,6 +665,7 @@ body {
     cursor: pointer;
     transition: all 0.2s;
     box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+    white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -768,6 +794,8 @@ body {
     align-items: center;
     padding: 1.5rem 1.75rem;
     border-bottom: 1px solid var(--border-color);
+    gap: 0.75rem;
+    flex-wrap: wrap;
 }
 
 .section-header h2 {
@@ -881,6 +909,7 @@ body {
     border-radius: 999px;
     text-transform: uppercase;
     letter-spacing: 0.4px;
+    white-space: nowrap;
 }
 
 .status-paid { background-color: var(--badge-green-bg); color: var(--badge-green-text); }
@@ -1050,6 +1079,7 @@ body {
     align-items: center;
     padding: 1.25rem 1.5rem;
     border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
 }
 
 .modal-header h2 {
@@ -1298,6 +1328,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
 }
 
 .btn-copy {
@@ -1331,6 +1362,7 @@ body {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-muted);
+    white-space: nowrap;
 }
 
 .btn-voltar {
@@ -1370,9 +1402,10 @@ body {
     font-weight: 600;
     font-size: 0.9rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    transform: translateY(calc(100% + 30px));
+    transform: translateY(120%);
     transition: transform 0.3s ease;
     z-index: 1100;
+    max-width: calc(100vw - 48px);
 }
 
 .toast.show { transform: translateY(0); }
@@ -1396,36 +1429,495 @@ body {
 .btn-save.loading { pointer-events: none; opacity: 0.7; }
 
 /* ============================================================
-   RESPONSIVIDADE
+   CÉLULAS EDITÁVEIS INLINE
    ============================================================ */
-@media (max-width: 1200px) {
-    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+.celula-editavel {
+    position: relative;
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    margin: -0.4rem -0.6rem;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.15s, box-shadow 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 60px;
 }
 
-@media (max-width: 992px) {
-    .main-wrapper { margin-left: 0; }
-    .top-header { padding: 1rem; }
-    .content { padding: 1.5rem; }
+.celula-editavel:hover {
+    background-color: #EFF6FF;
+    box-shadow: inset 0 0 0 1px #BFDBFE;
 }
 
+.celula-editavel:hover::after {
+    content: 'edit';
+    font-family: 'Material Symbols Rounded';
+    font-size: 14px;
+    color: var(--primary-blue-light);
+    opacity: 0.7;
+}
+
+.edit-input {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: var(--text-dark);
+    background: #FFFFFF;
+    border: 2px solid var(--primary-blue-light);
+    border-radius: var(--radius-sm);
+    padding: 0.35rem 0.5rem;
+    outline: none;
+    width: 100%;
+    min-width: 90px;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.edit-input.valor-input {
+    width: 100px;
+    text-align: right;
+}
+
+.btn-editar-aluno {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    padding: 0.35rem;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-left: 0.25rem;
+    opacity: 0;
+}
+
+tr:hover .btn-editar-aluno {
+    opacity: 1;
+}
+
+.btn-editar-aluno:hover {
+    background-color: #EFF6FF;
+    color: var(--primary-blue-light);
+}
+
+.btn-editar-aluno .material-symbols-rounded {
+    font-size: 16px;
+}
+
+.celula-editavel[data-tooltip]:hover::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #111827;
+    color: #FFFFFF;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    margin-bottom: 0.35rem;
+    opacity: 0.95;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* ============================================================
+   SIDEBAR OVERLAY (mobile)
+   ============================================================ */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(17, 24, 39, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 45;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* ============================================================
+   RESPONSIVIDADE - TABLET (até 1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .settings-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+/* ============================================================
+   RESPONSIVIDADE - MOBILE (até 768px)
+   ============================================================ */
 @media (max-width: 768px) {
-    .summary-grid { gap: 1rem; }
+    /* Sidebar deslizante */
+    .sidebar {
+        transform: translateX(-100%);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+        width: 280px;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    /* Main sem margem */
+    .main-wrapper {
+        margin-left: 0;
+    }
+
+    /* Header com menu hambúrguer */
+    .top-header {
+        padding: 0.75rem 1rem;
+        gap: 0.5rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Esconde a barra de busca no mobile */
+    .search-bar {
+        display: none;
+    }
+
+    /* Esconde o ícone de notificação no mobile (opcional) */
+    .icon-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    /* Botão principal do header vira só ícone */
+    .btn-primary span:not(.material-symbols-rounded) {
+        display: none;
+    }
+
+    .btn-primary {
+        padding: 0.6rem;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .content {
+        padding: 1rem;
+    }
+
+    .page-header {
+        margin-bottom: 1.25rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.35rem;
+    }
+
+    .page-header p {
+        font-size: 0.875rem;
+    }
+
+    /* Cards de resumo em 2 colunas no mobile */
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
     .summary-card {
-        padding: 1.1rem;
+        padding: 1rem;
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.75rem;
+        gap: 0.5rem;
     }
-    .card-value { font-size: 1.5rem; }
-    .page-header h1 { font-size: 1.4rem; }
-    .btn-primary span:not(.material-symbols-rounded) { display: none; }
-    .settings-grid { grid-template-columns: 1fr; }
+
+    .card-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .card-icon .material-symbols-rounded {
+        font-size: 20px;
+    }
+
+    .card-label {
+        font-size: 0.7rem;
+    }
+
+    .card-value {
+        font-size: 1.35rem;
+    }
+
+    /* Section header empilhado */
+    .section-header {
+        padding: 1rem 1.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .section-header h2 {
+        font-size: 1rem;
+    }
+
+    /* ============================================
+       TABELA VIRA CARDS NO MOBILE
+       ============================================ */
+    .data-table {
+        min-width: 100%;
+    }
+
+    .data-table thead {
+        display: none;
+    }
+
+    .data-table,
+    .data-table tbody,
+    .data-table tr,
+    .data-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .data-table tr {
+        background: #FFFFFF;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        margin-bottom: 0.75rem;
+        padding: 0.75rem;
+        box-shadow: var(--shadow-sm);
+        transition: box-shadow 0.2s;
+    }
+
+    .data-table tr:hover {
+        background-color: #FFFFFF;
+        box-shadow: var(--shadow-md);
+    }
+
+    .data-table td {
+        padding: 0.5rem 0;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .data-table td::before {
+        content: attr(data-label);
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        flex-shrink: 0;
+    }
+
+    .data-table td:first-child {
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .data-table td:first-child::before {
+        display: none;
+    }
+
+    .data-table td:last-child {
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--border-color);
+        margin-top: 0.5rem;
+        justify-content: flex-end;
+    }
+
+    .data-table td:last-child::before {
+        display: none;
+    }
+
+    /* Botão de editar aluno sempre visível no mobile */
+    .btn-editar-aluno {
+        opacity: 1;
+    }
+
+    /* Modal ocupa mais espaço no mobile */
+    .modal {
+        max-width: 100%;
+        margin: 0;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        max-height: 92vh;
+        transform: translateY(100%);
+    }
+
+    .modal-overlay.active .modal {
+        transform: translateY(0);
+    }
+
+    .modal-overlay {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    /* Form em coluna única no mobile */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* QR Code box no mobile */
+    .qrcode-box {
+        min-width: 220px;
+        min-height: 220px;
+        padding: 0.75rem;
+    }
+
+    .qrcode-box #qrcodeCanvas img,
+    .qrcode-box #qrcodeCanvas canvas {
+        width: 200px !important;
+        height: 200px !important;
+    }
+
+    .qrcode-valor {
+        font-size: 1.25rem;
+    }
+
+    /* Botões do footer do modal em coluna no mobile */
+    .modal-footer {
+        flex-direction: column-reverse;
+    }
+
+    .modal-footer .btn-primary,
+    .modal-footer .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Toast ocupa a largura toda */
+    .toast {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        max-width: none;
+    }
+
+    /* Settings grid uma coluna */
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Sidebar navegação mais compacta */
+    .nav-link {
+        padding: 0.85rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    /* Auth card menor */
+    .auth-card {
+        padding: 2rem 1.5rem;
+        border-radius: var(--radius-lg);
+    }
+
+    .auth-logo {
+        font-size: 1.4rem;
+    }
+
+    .auth-logo-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .auth-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
 }
 
+/* ============================================================
+   RESPONSIVIDADE - MOBILE PEQUENO (até 480px)
+   ============================================================ */
 @media (max-width: 480px) {
-    .summary-grid { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    .toast { left: 24px; right: 24px; }
-    .auth-card { padding: 2rem 1.5rem; }
-    .lista-cobranca .item-cobranca { flex-wrap: wrap; }
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 0.75rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .top-header {
+        padding: 0.6rem 0.75rem;
+    }
+
+    .data-table tr {
+        padding: 0.6rem;
+    }
+
+    .mini-avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 0.75rem;
+    }
+
+    .table-name {
+        font-size: 0.85rem;
+    }
+
+    .table-email {
+        font-size: 0.7rem;
+    }
+
+    .auth-card {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .auth-logo {
+        font-size: 1.25rem;
+    }
+
+    .qrcode-box {
+        min-width: 200px;
+        min-height: 200px;
+    }
+
+    .qrcode-box #qrcodeCanvas img,
+    .qrcode-box #qrcodeCanvas canvas {
+        width: 180px !important;
+        height: 180px !important;
+    }
+
+    /* Botão de editar aluno maior para toque */
+    .btn-editar-aluno {
+        padding: 0.5rem;
+    }
+
+    .btn-editar-aluno .material-symbols-rounded {
+        font-size: 18px;
+    }
+
+    /* Lista de cobrança compacta */
+    .lista-cobranca .item-cobranca {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .lista-cobranca .item-cobranca .info-aluno {
+        flex: 1 1 100%;
+        order: 2;
+    }
+
+    .lista-cobranca .valor-input-wrapper {
+        order: 3;
+        flex: 1 1 100%;
+        justify-content: flex-end;
+    }
 }

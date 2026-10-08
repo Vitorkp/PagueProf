@@ -1,5 +1,8 @@
 /* ============================================================
    PAGUEPROF - SISTEMA COMPLETO
+   + EDIÇÃO INLINE (Matéria, Última Aula, Valor)
+   + MODAL DE EDITAR ALUNO (nome, email, etc.)
+   + RESPONSIVO (sidebar mobile + tabelas em cards)
    ============================================================ */
 
 // ============================================================
@@ -114,7 +117,7 @@ const Pages = {
                                 </td></tr>
                             ` : DB.alunos.slice(0, 4).map(a => `
                                 <tr>
-                                    <td>
+                                    <td data-label="Aluno">
                                         <div class="table-user">
                                             <div class="mini-avatar ${a.cor}">${a.avatar}</div>
                                             <div>
@@ -123,9 +126,9 @@ const Pages = {
                                             </div>
                                         </div>
                                     </td>
-                                    <td>${a.materia}</td>
-                                    <td class="table-value">R$ ${a.valor},00</td>
-                                    <td>${renderBadge(a.status)}</td>
+                                    <td data-label="Matéria">${a.materia}</td>
+                                    <td data-label="Valor" class="table-value">R$ ${a.valor},00</td>
+                                    <td data-label="Status">${renderBadge(a.status)}</td>
                                 </tr>
                             `).join('')}
                         </tbody>
@@ -135,11 +138,14 @@ const Pages = {
         </div>
     `,
 
+    // ============================================================
+    // ALUNOS - COM EDIÇÃO INLINE + BOTÃO DE EDITAR ALUNO
+    // ============================================================
     alunos: () => `
         <div class="page">
             <div class="page-header">
                 <h1>Alunos</h1>
-                <p>Gerencie todos os seus alunos cadastrados.</p>
+                <p>Gerencie todos os seus alunos cadastrados. Clique nas células para editar.</p>
             </div>
 
             <section class="table-section">
@@ -167,20 +173,52 @@ const Pages = {
                                     Nenhum aluno cadastrado ainda.
                                 </td></tr>
                             ` : DB.alunos.map(a => `
-                                <tr>
-                                    <td>
+                                <tr data-aluno-id="${a.id}">
+                                    <td data-label="Aluno">
                                         <div class="table-user">
                                             <div class="mini-avatar ${a.cor}">${a.avatar}</div>
                                             <div>
                                                 <span class="table-name">${a.nome}</span>
                                                 <span class="table-email">${a.email}</span>
                                             </div>
+                                            <button class="btn-editar-aluno" onclick="abrirEditarAluno(${a.id})" title="Editar aluno">
+                                                <span class="material-symbols-rounded">edit</span>
+                                            </button>
                                         </div>
                                     </td>
-                                    <td>${a.materia}</td>
-                                    <td>${a.data}</td>
-                                    <td class="table-value">R$ ${a.valor},00</td>
-                                    <td>${renderBadge(a.status)}</td>
+
+                                    <td data-label="Matéria">
+                                        <span class="celula-editavel"
+                                              data-campo="materia"
+                                              data-aluno-id="${a.id}"
+                                              data-tooltip="Clique para editar"
+                                              onclick="editarInline(this)">
+                                            ${a.materia}
+                                        </span>
+                                    </td>
+
+                                    <td data-label="Última Aula">
+                                        <span class="celula-editavel"
+                                              data-campo="data"
+                                              data-aluno-id="${a.id}"
+                                              data-tooltip="Clique para editar"
+                                              onclick="editarInline(this)">
+                                            ${a.data}
+                                        </span>
+                                    </td>
+
+                                    <td data-label="Valor">
+                                        <span class="celula-editavel"
+                                              data-campo="valor"
+                                              data-aluno-id="${a.id}"
+                                              data-tooltip="Clique para editar"
+                                              onclick="editarInline(this)">
+                                            R$ ${a.valor},00
+                                        </span>
+                                    </td>
+
+                                    <td data-label="Status">${renderBadge(a.status)}</td>
+
                                     <td>
                                         <button class="icon-btn-sm" onclick="removerAluno(${a.id})" title="Remover">
                                             <span class="material-symbols-rounded">delete</span>
@@ -252,11 +290,11 @@ const Pages = {
                                 </td></tr>
                             ` : DB.pagamentos.map(p => `
                                 <tr>
-                                    <td><span class="table-name">${p.aluno}</span></td>
-                                    <td>${p.metodo}</td>
-                                    <td>${p.data}</td>
-                                    <td class="table-value">R$ ${p.valor},00</td>
-                                    <td>${renderBadge(p.status)}</td>
+                                    <td data-label="Aluno"><span class="table-name">${p.aluno}</span></td>
+                                    <td data-label="Método">${p.metodo}</td>
+                                    <td data-label="Data">${p.data}</td>
+                                    <td data-label="Valor" class="table-value">R$ ${p.valor},00</td>
+                                    <td data-label="Status">${renderBadge(p.status)}</td>
                                 </tr>
                             `).join('')}
                         </tbody>
@@ -282,10 +320,10 @@ const Pages = {
                         <tbody>
                             ${DB.cobrancas.map(c => `
                                 <tr>
-                                    <td><span class="table-name">${c.alunoNome}</span></td>
-                                    <td class="table-value">R$ ${c.valor},00</td>
-                                    <td>${c.vencimento}${c.hora ? ' ' + c.hora : ''}</td>
-                                    <td>${renderBadge(c.status)}</td>
+                                    <td data-label="Aluno"><span class="table-name">${c.alunoNome}</span></td>
+                                    <td data-label="Valor" class="table-value">R$ ${c.valor},00</td>
+                                    <td data-label="Vencimento">${c.vencimento}${c.hora ? ' ' + c.hora : ''}</td>
+                                    <td data-label="Status">${renderBadge(c.status)}</td>
                                 </tr>
                             `).join('')}
                         </tbody>
@@ -326,11 +364,11 @@ const Pages = {
                                 </td></tr>
                             ` : DB.aulas.map(a => `
                                 <tr>
-                                    <td><span class="table-name">${a.aluno}</span></td>
-                                    <td>${a.materia}</td>
-                                    <td>${a.data}</td>
-                                    <td>${a.hora}</td>
-                                    <td><span class="status-badge status-scheduled">${a.status}</span></td>
+                                    <td data-label="Aluno"><span class="table-name">${a.aluno}</span></td>
+                                    <td data-label="Matéria">${a.materia}</td>
+                                    <td data-label="Data">${a.data}</td>
+                                    <td data-label="Horário">${a.hora}</td>
+                                    <td data-label="Status"><span class="status-badge status-scheduled">${a.status}</span></td>
                                 </tr>
                             `).join('')}
                         </tbody>
@@ -466,10 +504,233 @@ function getDataHojeISO() {
     return `${d.getFullYear()}-${mes}-${dia}`;
 }
 
+function dataBRParaISO(dataBR) {
+    if (!dataBR) return '';
+    const partes = dataBR.split('/');
+    if (partes.length !== 3) return '';
+    return `${partes[2]}-${partes[1]}-${partes[0]}`;
+}
+
+function dataISOParaBR(dataISO) {
+    if (!dataISO) return '';
+    const partes = dataISO.split('-');
+    if (partes.length !== 3) return '';
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+
 function parseValor(str) {
     if (typeof str === 'number') return str;
     if (!str) return 0;
     return Number(String(str).replace(/[^\d,]/g, '').replace(',', '.')) || 0;
+}
+
+// ============================================================
+// SIDEBAR MOBILE (abrir/fechar)
+// ============================================================
+function abrirSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (sidebar) sidebar.classList.add('open');
+    if (overlay) overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function fecharSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (sidebar) sidebar.classList.remove('open');
+    if (overlay) overlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Fecha a sidebar automaticamente ao aumentar para desktop
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        fecharSidebar();
+    }
+});
+
+// ============================================================
+// EDIÇÃO INLINE (Matéria, Data, Valor)
+// ============================================================
+function editarInline(celula) {
+    if (celula.querySelector('.edit-input')) return;
+
+    const campo = celula.dataset.campo;
+    const alunoId = Number(celula.dataset.alunoId);
+    const aluno = DB.alunos.find(a => a.id === alunoId);
+    if (!aluno) return;
+
+    const valorAtual = aluno[campo];
+    const textoOriginal = celula.innerHTML;
+
+    let input;
+    if (campo === 'data') {
+        input = document.createElement('input');
+        input.type = 'date';
+        input.className = 'edit-input';
+        input.value = dataBRParaISO(valorAtual);
+    } else if (campo === 'valor') {
+        input = document.createElement('input');
+        input.type = 'number';
+        input.className = 'edit-input valor-input';
+        input.value = valorAtual;
+        input.min = '0';
+        input.step = '0.01';
+    } else {
+        input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'edit-input';
+        input.value = valorAtual;
+    }
+
+    celula.innerHTML = '';
+    celula.appendChild(input);
+    input.focus();
+    input.select();
+
+    const salvar = () => {
+        let novoValor = input.value.trim();
+
+        if (campo === 'valor') {
+            novoValor = Number(novoValor) || 0;
+        } else if (campo === 'data') {
+            novoValor = dataISOParaBR(novoValor);
+        }
+
+        if (campo !== 'valor' && !novoValor) {
+            celula.innerHTML = textoOriginal;
+            return;
+        }
+
+        aluno[campo] = novoValor;
+        salvarAlunosNoStorage();
+
+        if (campo === 'valor') {
+            celula.innerHTML = `R$ ${Number(aluno.valor).toFixed(2).replace('.', ',')}`;
+        } else {
+            celula.innerHTML = aluno[campo];
+        }
+
+        mostrarToast('Alteração salva!', 'success');
+    };
+
+    const cancelar = () => {
+        celula.innerHTML = textoOriginal;
+    };
+
+    input.addEventListener('blur', salvar);
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            input.blur();
+        } else if (e.key === 'Escape') {
+            e.preventDefault();
+            input.removeEventListener('blur', salvar);
+            cancelar();
+        }
+    });
+}
+
+// ============================================================
+// MODAL DE EDITAR ALUNO
+// ============================================================
+function abrirEditarAluno(id) {
+    const aluno = DB.alunos.find(a => a.id === id);
+    if (!aluno) return;
+
+    const editarId = document.getElementById('editarId');
+    if (!editarId) {
+        console.warn('⚠️ Modal de editar aluno não encontrado no HTML.');
+        mostrarToast('Modal de edição não disponível.', 'error');
+        return;
+    }
+
+    editarId.value = aluno.id;
+    document.getElementById('editarNome').value = aluno.nome;
+    document.getElementById('editarEmail').value = aluno.email;
+    document.getElementById('editarMateria').value = aluno.materia;
+    document.getElementById('editarValor').value = aluno.valor;
+    document.getElementById('editarData').value = dataBRParaISO(aluno.data);
+    document.getElementById('editarStatus').value = aluno.status;
+
+    document.getElementById('modalEditarAluno').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('editarNome').focus(), 100);
+}
+
+function fecharModalEditar() {
+    const modal = document.getElementById('modalEditarAluno');
+    if (modal) modal.classList.remove('active');
+    const form = document.getElementById('formEditarAluno');
+    if (form) form.reset();
+    document.body.style.overflow = '';
+}
+
+function salvarEdicaoAluno(e) {
+    e.preventDefault();
+
+    const id = Number(document.getElementById('editarId').value);
+    const aluno = DB.alunos.find(a => a.id === id);
+    if (!aluno) return;
+
+    const nome = document.getElementById('editarNome').value.trim();
+    const email = document.getElementById('editarEmail').value.trim();
+    const materia = document.getElementById('editarMateria').value.trim();
+    const valor = Number(document.getElementById('editarValor').value);
+    const dataISO = document.getElementById('editarData').value;
+    const status = document.getElementById('editarStatus').value;
+
+    if (!nome || !email || !materia || !valor || !dataISO) {
+        mostrarToast('Preencha todos os campos.', 'error');
+        return;
+    }
+
+    const nomeAntigo = aluno.nome;
+
+    aluno.nome = nome;
+    aluno.email = email;
+    aluno.materia = materia;
+    aluno.valor = valor;
+    aluno.data = dataISOParaBR(dataISO);
+    aluno.status = status;
+    aluno.avatar = getIniciais(nome);
+
+    DB.pagamentos.forEach(p => {
+        if (p.aluno === nomeAntigo) p.aluno = nome;
+    });
+
+    DB.cobrancas.forEach(c => {
+        if (c.alunoId === id) {
+            c.alunoNome = nome;
+            c.materia = materia;
+            c.valor = valor;
+        }
+    });
+
+    salvarAlunosNoStorage();
+    salvarCobrancasNoStorage();
+
+    fecharModalEditar();
+    navigateTo(paginaAtual);
+    mostrarToast('Aluno atualizado com sucesso!', 'success');
+}
+
+// ============================================================
+// PERSISTÊNCIA DOS ALUNOS
+// ============================================================
+function salvarAlunosNoStorage() {
+    try {
+        localStorage.setItem('pagueprof_alunos', JSON.stringify(DB.alunos));
+    } catch (e) { console.warn('Erro ao salvar alunos:', e); }
+}
+
+function carregarAlunosDoStorage() {
+    const salvo = localStorage.getItem('pagueprof_alunos');
+    if (salvo) {
+        try { DB.alunos = JSON.parse(salvo); }
+        catch (e) { console.warn('Erro ao carregar alunos:', e); }
+    }
 }
 
 // ============================================================
@@ -570,12 +831,14 @@ function abrirModalCobranca() {
     document.getElementById('cobrancaEtapa2').classList.add('hidden');
 
     modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
 
 function fecharModalCobranca() {
     document.getElementById('modalCobranca').classList.remove('active');
     cobrancasAtuais = [];
     cobrancaIndexAtual = 0;
+    document.body.style.overflow = '';
 }
 
 function gerarCobrancas() {
@@ -735,6 +998,7 @@ function verificarCobrancasVencidas() {
 
     if (alterou) {
         salvarCobrancasNoStorage();
+        salvarAlunosNoStorage();
         mostrarToast('Cobranças vencidas foram marcadas como PAGAS automaticamente! ✅', 'success');
     }
 }
@@ -787,9 +1051,6 @@ function atualizarRequisitosSenha(senha, containerId) {
     });
 }
 
-// ============================================================
-// TOGGLE SENHA
-// ============================================================
 function toggleSenha(inputId, botao) {
     const input = document.getElementById(inputId);
     if (!input) return;
@@ -990,26 +1251,16 @@ function setLoadingAuth(botao, ativo) {
 }
 
 // ============================================================
-// ESQUECI MINHA SENHA — FUNÇÕES GLOBAIS
+// ESQUECI MINHA SENHA
 // ============================================================
 window.abrirModalEsqueci = function() {
-    console.log('✅ abrirModalEsqueci() chamada');
-
     const modal = document.getElementById('modalEsqueciSenha');
-    if (!modal) {
-        console.error('❌ Modal #modalEsqueciSenha não encontrado!');
-        alert('Erro: modal de recuperação não encontrado.');
-        return;
-    }
+    if (!modal) return;
 
-    const formEmail = document.getElementById('formEsqueciEmail');
-    const formSenha = document.getElementById('formEsqueciSenha');
-    if (formEmail) formEmail.reset();
-    if (formSenha) formSenha.reset();
-
+    document.getElementById('formEsqueciEmail').reset();
+    document.getElementById('formEsqueciSenha').reset();
     document.getElementById('esqueciEtapa1').classList.remove('hidden');
     document.getElementById('esqueciEtapa2').classList.add('hidden');
-
     limparErroAuth('esqueciEmail', 'errEsqueciEmail');
     limparErroAuth('esqueciNovaSenha', 'errEsqueciNovaSenha');
     limparErroAuth('esqueciConfirmarSenha', 'errEsqueciConfirmarSenha');
@@ -1025,12 +1276,14 @@ window.abrirModalEsqueci = function() {
 
     emailRecuperacao = '';
     modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
 };
 
 window.fecharModalEsqueci = function() {
     const modal = document.getElementById('modalEsqueciSenha');
     if (modal) modal.classList.remove('active');
     emailRecuperacao = '';
+    document.body.style.overflow = '';
 };
 
 window.voltarEsqueciEtapa1 = function() {
@@ -1134,6 +1387,11 @@ function navigateTo(pageName) {
     };
     document.getElementById('btnNewLabel').textContent = labelMap[pageName] || 'Novo';
 
+    // Fecha a sidebar no mobile ao navegar
+    if (window.innerWidth <= 768) {
+        fecharSidebar();
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1142,12 +1400,14 @@ function navigateTo(pageName) {
 // ============================================================
 function openModal() {
     document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
     setTimeout(() => document.getElementById('nome').focus(), 100);
 }
 
 function closeModal() {
     document.getElementById('modalOverlay').classList.remove('active');
     document.getElementById('formAluno').reset();
+    document.body.style.overflow = '';
 }
 
 function cadastrarAluno(e) {
@@ -1170,6 +1430,7 @@ function cadastrarAluno(e) {
         data: getDataHoje(), metodo: 'PIX', status
     });
 
+    salvarAlunosNoStorage();
     closeModal();
     navigateTo(paginaAtual);
     mostrarToast(`Aluno "${nome}" cadastrado com sucesso!`, 'success');
@@ -1182,6 +1443,7 @@ function removerAluno(id) {
         DB.alunos = DB.alunos.filter(a => a.id !== id);
         DB.pagamentos = DB.pagamentos.filter(p => p.aluno !== aluno.nome);
         DB.cobrancas = DB.cobrancas.filter(c => c.alunoId !== id);
+        salvarAlunosNoStorage();
         salvarCobrancasNoStorage();
         navigateTo(paginaAtual);
         mostrarToast(`Aluno "${aluno.nome}" removido.`, 'success');
@@ -1348,6 +1610,7 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarUsuario();
     carregarDoStorage();
     carregarCobrancasDoStorage();
+    carregarAlunosDoStorage();
 
     document.getElementById('tabLogin').addEventListener('click', () => trocarAba('login'));
     document.getElementById('tabRegister').addEventListener('click', () => trocarAba('register'));
@@ -1355,11 +1618,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('formLogin').addEventListener('submit', fazerLogin);
     document.getElementById('formRegister').addEventListener('submit', fazerCadastro);
 
-    // Formulários do esqueci senha
     document.getElementById('formEsqueciEmail').addEventListener('submit', esqueciEtapa1Submit);
     document.getElementById('formEsqueciSenha').addEventListener('submit', esqueciEtapa2Submit);
 
-    // Checklist de senha no cadastro
     const regSenhaInput = document.getElementById('regSenha');
     if (regSenhaInput) {
         regSenhaInput.addEventListener('input', (e) => {
@@ -1368,7 +1629,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Checklist de senha no esqueci
     const esqueciNovaSenha = document.getElementById('esqueciNovaSenha');
     if (esqueciNovaSenha) {
         esqueciNovaSenha.addEventListener('input', (e) => {
@@ -1377,7 +1637,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Logo
     const logoHome = document.getElementById('logoHome');
     if (logoHome) {
         logoHome.addEventListener('click', (e) => {
@@ -1386,11 +1645,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Logout
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) logoutBtn.addEventListener('click', fazerLogout);
 
-    // Navegação
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -1398,7 +1655,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Botão "+ Novo"
     const btnNew = document.getElementById('btnNew');
     if (btnNew) {
         btnNew.addEventListener('click', () => {
@@ -1409,7 +1665,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Modal Novo Aluno
     const modalClose = document.getElementById('modalClose');
     const modalCancel = document.getElementById('modalCancel');
     const modalOverlay = document.getElementById('modalOverlay');
@@ -1422,7 +1677,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Modal Cobrança
+    const editarClose = document.getElementById('editarClose');
+    const editarCancel = document.getElementById('editarCancel');
+    const modalEditar = document.getElementById('modalEditarAluno');
+    const formEditar = document.getElementById('formEditarAluno');
+
+    if (editarClose) editarClose.addEventListener('click', fecharModalEditar);
+    if (editarCancel) editarCancel.addEventListener('click', fecharModalEditar);
+    if (modalEditar) {
+        modalEditar.addEventListener('click', (e) => {
+            if (e.target.id === 'modalEditarAluno') fecharModalEditar();
+        });
+    }
+    if (formEditar) formEditar.addEventListener('submit', salvarEdicaoAluno);
+
     const cobrancaClose = document.getElementById('cobrancaClose');
     const cobrancaCancel = document.getElementById('cobrancaCancel');
     const modalCobranca = document.getElementById('modalCobranca');
@@ -1445,12 +1713,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (qrcodeProximo) qrcodeProximo.addEventListener('click', cobrancaProximo);
     if (btnCopiarPix) btnCopiarPix.addEventListener('click', copiarPix);
 
-    // ESC fecha modais
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeModal();
+            fecharModalEditar();
             fecharModalCobranca();
             fecharModalEsqueci();
+            fecharSidebar();
         }
     });
 
