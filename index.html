@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PagueProf - Painel do Professor</title>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%232563EB'/%3E%3Cpath d='M12 28 L20 10 L28 28' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M15.5 22 L24.5 22' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+    <!-- TELA DE LOGIN / CADASTRO -->
+    <div class="auth-screen" id="authScreen">
+        <div class="auth-card">
+            <div class="auth-logo-wrapper">
+                <svg class="auth-logo-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="10" fill="#2563EB"/>
+                    <path d="M12 28 L20 10 L28 28" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M15.5 22 L24.5 22" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <h1 class="auth-logo">Pague<span>Prof</span></h1>
+            </div>
+            <p class="auth-subtitle">Bem-vindo ao app de pagamentos para professores</p>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tabLogin" type="button">Entrar</button>
+                <button class="auth-tab" id="tabRegister" type="button">Criar Conta</button>
+            </div>
+
+            <form id="formLogin" class="auth-form">
+                <div class="auth-group">
+                    <label for="loginEmail">E-mail</label>
+                    <input type="email" id="loginEmail" placeholder="seu@email.com" required autocomplete="email" />
+                    <span class="form-error" id="errLoginEmail">E-mail inválido</span>
+                </div>
+                <div class="auth-group">
+                    <label for="loginSenha">Senha</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="loginSenha" placeholder="Sua senha secreta" required autocomplete="current-password" />
+                        <button type="button" class="toggle-password" onclick="toggleSenha('loginSenha', this)" title="Mostrar senha">
+                            <span class="material-symbols-rounded">visibility</span>
+                        </button>
+                    </div>
+                    <span class="form-error" id="errLoginSenha">Senha incorreta</span>
+                </div>
+
+                <button type="submit" class="auth-btn">Entrar</button>
+
+                <!-- Link "Esqueci minha senha" - onclick inline -->
+                <a href="javascript:void(0)" class="link-esqueci" onclick="abrirModalEsqueci()">Esqueci minha senha</a>
+            </form>
+
+            <form id="formRegister" class="auth-form hidden">
+                <div class="auth-group">
+                    <label for="regNome">Nome completo</label>
+                    <input type="text" id="regNome" placeholder="Seu nome" required />
+                    <span class="form-error" id="errRegNome">Campo obrigatório</span>
+                </div>
+                <div class="auth-group">
+                    <label for="regEmail">E-mail</label>
+                    <input type="email" id="regEmail" placeholder="seu@email.com" required />
+                    <span class="form-error" id="errRegEmail">E-mail inválido</span>
+                </div>
+                <div class="auth-group">
+                    <label for="regSenha">Senha</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="regSenha" placeholder="Crie uma senha forte" required />
+                        <button type="button" class="toggle-password" onclick="toggleSenha('regSenha', this)" title="Mostrar senha">
+                            <span class="material-symbols-rounded">visibility</span>
+                        </button>
+                    </div>
+                    <span class="form-error" id="errRegSenha">Senha não atende aos requisitos</span>
+
+                    <div class="password-requirements" id="passwordReqs">
+                        <div class="req-item" data-req="length">
+                            <span class="material-symbols-rounded">cancel</span>
+                            <span>Mínimo 6 caracteres</span>
+                        </div>
+                        <div class="req-item" data-req="upper">
+                            <span class="material-symbols-rounded">cancel</span>
+                            <span>Pelo menos 1 letra maiúscula (A-Z)</span>
+                        </div>
+                        <div class="req-item" data-req="lower">
+                            <span class="material-symbols-rounded">cancel</span>
+                            <span>Pelo menos 1 letra minúscula (a-z)</span>
+                        </div>
+                        <div class="req-item" data-req="special">
+                            <span class="material-symbols-rounded">cancel</span>
+                            <span>Pelo menos 1 caractere especial (@#$%!)</span>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="auth-btn">Criar Conta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- APLICAÇÃO PRINCIPAL -->
+    <div class="app-layout hidden" id="appLayout">
+
+        <aside class="sidebar">
+            <a href="javascript:void(0)" class="sidebar-logo" id="logoHome" title="Voltar ao Início">
+                <svg class="logo-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="10" fill="#2563EB"/>
+                    <path d="M12 28 L20 10 L28 28" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M15.5 22 L24.5 22" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">Pague<em>Prof</em></span>
+            </a>
+
+            <nav class="sidebar-nav">
+                <a href="javascript:void(0)" class="nav-link active" data-page="dashboard">
+                    <span class="material-symbols-rounded">dashboard</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link" data-page="alunos">
+                    <span class="material-symbols-rounded">group</span>
+                    <span>Alunos</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link" data-page="pagamentos">
+                    <span class="material-symbols-rounded">credit_card</span>
+                    <span>Pagamentos</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link" data-page="aulas">
+                    <span class="material-symbols-rounded">calendar_today</span>
+                    <span>Aulas</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-link" data-page="configuracoes">
+                    <span class="material-symbols-rounded">settings</span>
+                    <span>Configurações</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-card" id="userCard">
+                    <div class="user-avatar" id="sidebarAvatar">PS</div>
+                    <div class="user-info">
+                        <span class="user-name" id="sidebarName">Prof. Silva</span>
+                        <span class="user-role">Professor</span>
+                    </div>
+                    <button class="logout-btn" id="logoutBtn" title="Sair">
+                        <span class="material-symbols-rounded">logout</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+
+            <header class="top-header">
+                <div class="search-bar">
+                    <span class="material-symbols-rounded">search</span>
+                    <input type="text" id="globalSearch" placeholder="Buscar...">
+                </div>
+
+                <div class="header-actions">
+                    <button class="icon-btn">
+                        <span class="material-symbols-rounded">notifications</span>
+                        <span class="notification-dot"></span>
+                    </button>
+                    <button class="btn-primary" id="btnNew">
+                        <span class="material-symbols-rounded">add</span>
+                        <span id="btnNewLabel">Novo Aluno</span>
+                    </button>
+                </div>
+            </header>
+
+            <main class="content" id="appContent"></main>
+
+        </div>
+
+    </div>
+
+    <!-- MODAL DE NOVO ALUNO -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Novo Aluno</h2>
+                <button class="icon-btn-sm" id="modalClose">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+
+            <form id="formAluno" class="modal-body">
+                <div class="form-group">
+                    <label for="nome">Nome completo *</label>
+                    <input type="text" id="nome" required placeholder="Ex: João Silva">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" required placeholder="Ex: joao@email.com">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="materia">Matéria *</label>
+                        <input type="text" id="materia" required placeholder="Ex: Violão">
+                    </div>
+                    <div class="form-group">
+                        <label for="valor">Valor (R$) *</label>
+                        <input type="number" id="valor" required min="0" placeholder="120">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status do pagamento</label>
+                    <select id="status">
+                        <option value="Pago">Pago</option>
+                        <option value="Pendente" selected>Pendente</option>
+                        <option value="Atrasado">Atrasado</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="modalCancel">Cancelar</button>
+                    <button type="submit" class="btn-primary">
+                        <span class="material-symbols-rounded">check</span>
+                        Cadastrar Aluno
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE GERAR COBRANÇAS -->
+    <div class="modal-overlay" id="modalCobranca">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2>Gerar Cobranças PIX</h2>
+                <button class="icon-btn-sm" id="cobrancaClose">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+
+            <div class="modal-body" id="cobrancaEtapa1">
+                <p class="modal-description">
+                    Selecione a data de vencimento e os alunos que deseja cobrar via PIX. Você pode ajustar o valor de cada aluno individualmente.
+                </p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cobrancaData">Data de vencimento *</label>
+                        <input type="date" id="cobrancaData" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="cobrancaHora">Hora (opcional)</label>
+                        <input type="time" id="cobrancaHora" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Alunos com pagamento pendente/atrasado</label>
+                    <div id="listaCobranca" class="lista-cobranca"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="cobrancaCancel">Cancelar</button>
+                    <button type="button" class="btn-primary" id="cobrancaGerar">
+                        <span class="material-symbols-rounded">qr_code</span>
+                        Gerar QR Codes
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-body hidden" id="cobrancaEtapa2">
+                <button class="btn-voltar" id="cobrancaVoltar">
+                    <span class="material-symbols-rounded">arrow_back</span>
+                    Voltar
+                </button>
+
+                <div class="qrcode-container">
+                    <div class="qrcode-header">
+                        <div class="qrcode-aluno" id="qrcodeAlunoNome">João Silva</div>
+                        <div class="qrcode-valor" id="qrcodeValor">R$ 120,00</div>
+                    </div>
+
+                    <div class="qrcode-box">
+                        <div id="qrcodeCanvas"></div>
+                    </div>
+
+                    <p class="qrcode-instrucao">
+                        Escaneie o QR Code com o app do seu banco para pagar.
+                    </p>
+
+                    <div class="pix-code-wrapper">
+                        <input type="text" id="pixCodeInput" readonly />
+                        <button type="button" class="btn-copy" id="btnCopiarPix" title="Copiar código PIX">
+                            <span class="material-symbols-rounded">content_copy</span>
+                        </button>
+                    </div>
+
+                    <div class="qrcode-nav">
+                        <button class="btn-secondary" id="qrcodeAnterior">
+                            <span class="material-symbols-rounded">arrow_back</span>
+                            Anterior
+                        </button>
+                        <span class="qrcode-counter" id="qrcodeCounter">1 / 3</span>
+                        <button class="btn-primary" id="qrcodeProximo">
+                            Próximo
+                            <span class="material-symbols-rounded">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ESQUECI MINHA SENHA -->
+    <div class="modal-overlay" id="modalEsqueciSenha">
+        <div class="modal modal-small">
+            <div class="modal-header">
+                <h2>Recuperar Senha</h2>
+                <button class="icon-btn-sm" onclick="fecharModalEsqueci()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+
+            <div class="modal-body" id="esqueciEtapa1">
+                <p class="modal-description">
+                    Informe o e-mail cadastrado para redefinir sua senha.
+                </p>
+
+                <form id="formEsqueciEmail">
+                    <div class="form-group">
+                        <label for="esqueciEmail">E-mail cadastrado *</label>
+                        <input type="email" id="esqueciEmail" placeholder="seu@email.com" required />
+                        <span class="form-error" id="errEsqueciEmail">E-mail inválido</span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="fecharModalEsqueci()">Cancelar</button>
+                        <button type="submit" class="btn-primary">
+                            <span class="material-symbols-rounded">arrow_forward</span>
+                            Continuar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-body hidden" id="esqueciEtapa2">
+                <button class="btn-voltar" onclick="voltarEsqueciEtapa1()">
+                    <span class="material-symbols-rounded">arrow_back</span>
+                    Voltar
+                </button>
+
+                <p class="modal-description">
+                    Defina uma nova senha para sua conta.
+                </p>
+
+                <form id="formEsqueciSenha">
+                    <div class="form-group">
+                        <label for="esqueciNovaSenha">Nova senha *</label>
+                        <div class="password-wrapper light">
+                            <input type="password" id="esqueciNovaSenha" placeholder="Digite a nova senha" required />
+                            <button type="button" class="toggle-password" onclick="toggleSenha('esqueciNovaSenha', this)" title="Mostrar senha">
+                                <span class="material-symbols-rounded">visibility</span>
+                            </button>
+                        </div>
+                        <span class="form-error" id="errEsqueciNovaSenha">Senha não atende aos requisitos</span>
+
+                        <div class="password-requirements light" id="esqueciPasswordReqs">
+                            <div class="req-item" data-req="length">
+                                <span class="material-symbols-rounded">cancel</span>
+                                <span>Mínimo 6 caracteres</span>
+                            </div>
+                            <div class="req-item" data-req="upper">
+                                <span class="material-symbols-rounded">cancel</span>
+                                <span>Pelo menos 1 letra maiúscula (A-Z)</span>
+                            </div>
+                            <div class="req-item" data-req="lower">
+                                <span class="material-symbols-rounded">cancel</span>
+                                <span>Pelo menos 1 letra minúscula (a-z)</span>
+                            </div>
+                            <div class="req-item" data-req="special">
+                                <span class="material-symbols-rounded">cancel</span>
+                                <span>Pelo menos 1 caractere especial (@#$%!)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="esqueciConfirmarSenha">Confirmar nova senha *</label>
+                        <div class="password-wrapper light">
+                            <input type="password" id="esqueciConfirmarSenha" placeholder="Repita a nova senha" required />
+                            <button type="button" class="toggle-password" onclick="toggleSenha('esqueciConfirmarSenha', this)" title="Mostrar senha">
+                                <span class="material-symbols-rounded">visibility</span>
+                            </button>
+                        </div>
+                        <span class="form-error" id="errEsqueciConfirmarSenha">As senhas não coincidem</span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="fecharModalEsqueci()">Cancelar</button>
+                        <button type="submit" class="btn-primary">
+                            <span class="material-symbols-rounded">check</span>
+                            Salvar Nova Senha
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="material-symbols-rounded">check_circle</span>
+        <span id="toastMessage">Aluno cadastrado com sucesso!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
