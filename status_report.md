@@ -75,7 +75,7 @@ Definimos os cargos de cada membro e criamos um protótipo visual de como seria 
 - [x] O código atualizado está no repositório oficial.
 - [ ] Os problemas conhecidos estão registrados no Kanban ou no repositório.
 
-### Problemas conhecidos
+### Problemas encontrados
 
 durante o desenvolvimento da sprint 1 tivemos alguns problemas conhecidos:
 
